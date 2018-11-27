@@ -1,21 +1,24 @@
-FROM node:9.8-alpine
+# DOCKER-VERSION 18.09.0
+FROM centos:7
 
-RUN apk update
-RUN apk add sox
-RUN apk add --no-cache tzdata && \
-    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && \
-    apk del tzdata
+RUN cd /myblog/software && \
+    wget https://nodejs.org/dist/v10.13.0/node-v10.13.0-linux-x64.tar.xz && \
+    xz -d node-v10.13.0-linux-x64.tar.xz && \
+    tar -xf node-v10.13.0-linux-x64.tar && \
+    ln -s ~/node-v10.13.0-linux-x64/bin/node /usr/bin/node && \
+    ln -s ~/node-v10.13.0-linux-x64/bin/npm /usr/bin/npm
 
-COPY package.json /tmp/package.json
-
-WORKDIR /tmp
-RUN cd /tmp && \
-    npm config set registry https://registry.npm.taobao.org && \
-    npm install --production && \
+WORKDIR /myblog
+RUN cd /myblog/luther-blog/blog && \
+    npm install --production&& \
+    npm run build && \
+    mv /myblog/luther-blog/blog/build/ /myblog/luther-blog/blog-api/public && \
     npm install pm2 -g && npm install typescript -g && \
-    mkdir -p /opt/workdir && mv /tmp/node_modules /opt/workdir/
+    cd /myblog/luther-blog/blog-api && \
+    npm install && \
+    npm run build
 
-WORKDIR /opt/workdir
+WORKDIR /myblog
 COPY . /opt/workdir
 RUN npm run build
 
