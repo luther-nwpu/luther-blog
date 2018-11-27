@@ -18,8 +18,7 @@ RUN cd /myblog/luther-blog/blog && \
     npm install && \
     npm run build
 
-WORKDIR /myblog
-COPY . /opt/workdir
+WORKDIR /myblog/luther-blog/blog-api
 RUN npm run build
 
 EXPOSE 10010
