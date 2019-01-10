@@ -14,8 +14,9 @@ export class Home extends React.Component {
     )
   }
 
-  handleChange = (editorStste) => {
-    this.setState({ editorStste })
+  handleChange = (editorState) => {
+    this.setState({ editorState })
+    console.log(editorState)
   }
 
 }
