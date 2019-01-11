@@ -37,7 +37,6 @@ export class ArticleList extends React.Component {
   public render() {
     return (
       <div className="App">
-        <button> 写文章 </button>
         <div className="articles">
           {
             this.state.articles.map((item, key) => {
