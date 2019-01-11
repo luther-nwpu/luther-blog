@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {App} from '@layout/blogapp'
+import {App} from '@layout/blogapp/App'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')

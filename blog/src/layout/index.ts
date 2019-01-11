@@ -1,2 +1,2 @@
-export * from '@layout/blogapp'
-export * from '@layout/adminapp'
+export * from '@layout/blogapp/App'
+export * from '@layout/adminapp/adminapp'
