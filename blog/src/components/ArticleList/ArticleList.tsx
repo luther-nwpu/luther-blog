@@ -36,7 +36,7 @@ export class ArticleList extends React.Component {
   }
   public render() {
     return (
-      <div className="App">
+      <div className="artilcelist-app">
         <div className="articles">
           {
             this.state.articles.map((item, key) => {

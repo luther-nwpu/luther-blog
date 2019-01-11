@@ -5,8 +5,7 @@ import { Provider } from 'react-redux'
 import store from 'store'
 import {App, AdminApp} from '@layout'
 import {Error} from '@pages'
-const history = createBrowserHistory()
-
+import history from '@router'
 class RouterConfig extends React.Component {
   public render() {
     return (

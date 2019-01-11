@@ -2,6 +2,8 @@ import * as React from 'react'
 import { GET } from '@lib/helper'
 import './admin.scss'
 import {ArticleList} from '@components'
+import { withRouter } from 'react-router-dom'
+import history from '@router'
 export class Admin extends React.Component {
   public constructor(props: any) {
     super(props)
@@ -10,13 +12,14 @@ export class Admin extends React.Component {
     const res = await GET('/blog/getAllArticles')
     console.log(res)
   }
+  public switchToAddArticle() {
+    history.push('/admin/addarticle')
+  }
   public render() {
     return (
-      <div className="App">
-        <button> 写文章 </button>
-        <div className="articles">
-          <ArticleList></ArticleList>
-        </div>
+      <div className="admin-app">
+        <button onClick={this.switchToAddArticle}> 写文章 </button>
+        <ArticleList></ArticleList>
       </div>
     )
   }
