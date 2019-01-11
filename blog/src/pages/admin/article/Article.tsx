@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { GET, Post } from '@lib/helper'
-import {Editor} from '@components'
+
 export class Article extends React.Component {
   public state = {
     text: '',
@@ -28,7 +28,6 @@ export class Article extends React.Component {
     return (
       <div className="App">
         <button onClick={this.commitArticle}> 发布文章</button>
-        <Editor handleEditorChange={this.handleEditorChange}/>
       </div >
     )
   }

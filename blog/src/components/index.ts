@@ -1,3 +1,4 @@
-export * from '@components/error'
-export * from '@components/UploadFile'
-export * from '@components/editor'
+export * from '@components/Error/Error'
+export * from '@components/UploadFile/UploadFile'
+export * from '@components/Editor/Editor'
+export * from '@components/ArticleList/ArticleList'

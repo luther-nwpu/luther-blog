@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { GET } from '@lib/helper'
-import './index.css'
+import './ArticleList.scss'
 export class ArticleList extends React.Component {
   public state = {
     text: '',
@@ -56,9 +56,9 @@ export class ArticleList extends React.Component {
                             <p>{item.article_description}</p>
                           </div>
                           <div className="articles-item-detail-bottom">
-                            <img className="svg-size" src={require('./assets/comment.svg')}/>
+                            <img className="svg-size" src={require('@assets/comment.svg')}/>
                             5
-                            <img className="svg-size" src={require('./assets/support.svg')}/>
+                            <img className="svg-size" src={require('@assets/support.svg')}/>
                             6
                           </div>
                         </div>
