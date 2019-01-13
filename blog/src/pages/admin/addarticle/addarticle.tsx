@@ -11,13 +11,16 @@ export class AddArticle extends React.Component {
     const res = await GET('/blog/getAllArticles')
     console.log(res)
   }
+  public save() {
+    console.log('我喜欢你')
+  }
   public render() {
     return (
       <div className="App">
         <div>文章标题</div><input></input>
         <div>文章图片</div><UploadFile></UploadFile>
         <div>文章描述</div><textarea></textarea>
-        <button>保存</button>
+        <button onClick={this.save}>保存</button>
         <Editor></Editor>
       </div>
     )
