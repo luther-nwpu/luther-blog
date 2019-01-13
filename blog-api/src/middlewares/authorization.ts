@@ -9,7 +9,8 @@ export const jwtMiddleware = [
         ignores: [
             'POST:/admin/upload',
             'GET:/blog/getAllArticles',
-            'POST:/admin/commitArticle'
+            'POST:/admin/commitArticle',
+            'POST:/admin/addArticle'
         ]
     }),
 
