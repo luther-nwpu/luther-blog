@@ -20,7 +20,7 @@ export const MYSQL = {
     PORT: getEnv('DB_PORT') || '3306',
     USER: getEnv('DB_USER') || 'root',
     PASS: getEnv('DB_PASS') || 'root',
-    DB: getEnv('DB_NAME') || 'articles',
+    DB: getEnv('DB_NAME') || 'lutherblog',
     CHAR: getEnv('DB_CHAR') || 'utf8mb4'
 }
 

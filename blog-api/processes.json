@@ -13,7 +13,7 @@
 			"DB_PORT": "3306",
 			"DB_USER": "root",
 			"DB_PASS": "root",
-			"DB_NAME": "blog",
+			"DB_NAME": "lutherblog",
 			"DB_CHAR": "utf8mb4",
 			"REDIS_HOST": "localhost",
 			"JWT_SECRET": "Npu2015303320"
