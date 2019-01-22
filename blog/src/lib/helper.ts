@@ -22,6 +22,17 @@ export function Post(url: string, params: any): Promise<any> {
   })
 }
 
+export function FilePost(url: string, file: any): Promise<any> {
+  return new Promise((resolve, reject) => {
+    fetch(url, {
+      method: 'POST',
+      body: file
+    }).then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch((err) => reject(err))
+  })
+}
+
 export async function GET(url: string): Promise<any> {
   return new Promise<any>((resolve, reject) => {
     fetch(url, {

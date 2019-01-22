@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { PureComponent } from 'react'
+import { FilePost } from '@lib/helper'
 
 interface Props {
     afterUpload: Function,
@@ -19,7 +20,7 @@ export class UploadFile extends PureComponent<Props, {}> {
         this.setState({ name: e.target.value })
     }
     public startUpload = () => {
-        console.log('66666666666666')
+        this.upload()
     }
     public changePath = (e: any) => {
         const file = e.target.files[0]
@@ -47,8 +48,10 @@ export class UploadFile extends PureComponent<Props, {}> {
         this.setState({ path: file.name, data: file, preview })
     }
     // 上传文件
-    public upload = () => {
+    public upload = async () => {
+        console.log(this.state)
         const data = this.state.data
+        console.log(data)
         if (!data) {
             return
         }
@@ -57,13 +60,7 @@ export class UploadFile extends PureComponent<Props, {}> {
         const form = new FormData()
         // 此处的file字段由上传的api决定，可以是其它值
         form.append('file', data)
-        console.log(data)
-        fetch(url, {
-            method: 'POST',
-            body: form,
-        }).then((res) => {
-            console.log(res)
-        })
+        await FilePost(url, form)
     }
     public render() {
         return (
