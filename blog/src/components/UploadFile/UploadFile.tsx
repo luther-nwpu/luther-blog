@@ -1,7 +1,14 @@
 import * as React from 'react'
 import { PureComponent } from 'react'
 
-export class UploadFile extends PureComponent {
+interface Props {
+    afterUpload: Function,
+    onRef: Function
+}
+export class UploadFile extends PureComponent<Props, {}> {
+    componentDidMount(){
+        this.props.onRef(this)
+    }
     public state = {
         name: '',
         path: '',
@@ -11,7 +18,9 @@ export class UploadFile extends PureComponent {
     public changeName = (e: any) => {
         this.setState({ name: e.target.value })
     }
-
+    public startUpload = () => {
+        console.log('66666666666666')
+    }
     public changePath = (e: any) => {
         const file = e.target.files[0]
         if (!file) {
