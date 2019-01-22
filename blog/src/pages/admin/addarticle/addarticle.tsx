@@ -19,6 +19,7 @@ export class AddArticle extends React.Component {
     console.log('6666', res)
   }
   public  async save() {
+    const res = await Post('/admin/commitArticle', this.state)
     console.log(this.state)
   }
   public changeTitle(event:any) {
@@ -34,7 +35,7 @@ export class AddArticle extends React.Component {
         <div>文章图片</div><UploadFile></UploadFile>
         <div>文章描述</div><textarea value={this.state.description} onChange={() => this.changeDescription(event)}></textarea>
         <button onClick={() => this.save()}>保存</button>
-        <Editor></Editor>
+        <Editor content = {this.state.content}></Editor>
       </div>
     )
   }
