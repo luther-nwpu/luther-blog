@@ -20,7 +20,6 @@ export class AddArticle extends React.Component {
   }
   public  async save() {
     console.log(this.state)
-    const res = await Post('/admin/addArticle', this.state)
   }
   public changeTitle(event:any) {
     this.setState({title: event.target.value})

@@ -17,4 +17,8 @@ router.post('commitArticle', async (ctx, next) => {
     console.log(articleValue)
 })
 
+router.post('addArticle', async (ctx, next) => {
+    console.log(ctx.request.body)
+})
+
 export default router

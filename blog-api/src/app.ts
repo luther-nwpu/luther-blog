@@ -33,7 +33,7 @@ app
     .use(adminRouter.allowedMethods())
 const server = createServer(app.callback())
 
-WebSocket({ server })
+// WebSocket({ server })
 
 server.listen(
     PORT,
