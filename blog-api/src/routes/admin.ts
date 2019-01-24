@@ -1,28 +1,48 @@
 import * as koaRouter from 'koa-router'
 import * as fs from 'fs'
-import { mkdirsSync } from '@libs/util'
-import { Picture } from '@models'
+import { mkdirsSync, tryCatch } from '@libs/util'
+import { Picture, Article } from '@models'
 const router = new koaRouter()
 
 router.prefix('/admin')
 
 router.post('/upload', async (ctx, next) => {
-    mkdirsSync('upload/')
-    const file = ctx.request.files.file
-    const reader = fs.createReadStream(file.path)
-    const fileNameArr = file.name.split('.')
-    const ext = fileNameArr.pop()
-    const oldFileName = fileNameArr.join()
-    const newFileName = `${oldFileName}_${new Date().getTime()}`
-    const newFileUrl = `upload/${newFileName}.${ext}`
-    const upStream = fs.createWriteStream(newFileUrl)
-    reader.pipe(upStream)
-    new Picture({ name: oldFileName, picture_url: newFileUrl }).save(null, { method: 'insert' })
-    return ctx.body = '上传成功'
+    const [result, error] = await tryCatch(new Promise((resovle: Function, reject: Function) => {
+        mkdirsSync('upload/')
+        const file = ctx.request.files.file
+        const reader = fs.createReadStream(file.path)
+        const fileNameArr = file.name.split('.')
+        const ext = fileNameArr.pop()
+        const oldFileName = fileNameArr.join()
+        const newFileName = `${oldFileName}_${new Date().getTime()}`
+        const newFileUrl = `upload/${newFileName}.${ext}`
+        const upStream = fs.createWriteStream(newFileUrl)
+        reader.pipe(upStream)
+        new Picture({ name: oldFileName, picture_url: newFileUrl }).save(null, { method: 'insert' }).then(model => {
+            resovle(model)
+        }).catch(err => {
+            reject(err)
+        })
+    }))
+    if (error) {
+        return ctx.body = { success: false, result: error }
+    }
+    return ctx.body = { success: true, result: result }
 })
 
 router.post('/commitArticle', async (ctx, next) => {
-    return ctx.body = { 'text': '你好' }
+    const body = JSON.parse(ctx.request.body)
+    const [result, error] = await tryCatch(new Promise((resolve, reject) => {
+        new Article({ description: body.description, picture_id: body.img, title: body.title, content: JSON.stringify(body.content) }).save(null, { method: 'insert' }).then(model => {
+            resolve(model)
+        }).catch(err => {
+            reject(err)
+        })
+    }))
+    if (error) {
+        return ctx.body = { success: false, result: error }
+    }
+    return ctx.body = { success: true, result: result }
 })
 
 export default router

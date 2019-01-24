@@ -1,3 +1,7 @@
+export interface IResponse {
+  success: string,
+  result: any
+}
 /**
  * tryCatch return Promise<[T, Error]>
  * @param {Promise<T>} promise
@@ -17,7 +21,7 @@ export function Post(url: string, params: any): Promise<any> {
       method: 'POST',
       body: JSON.stringify(params),
     }).then((response) => response.json())
-      .then((data) => resolve(data))
+      .then((data: IResponse) => resolve(data))
       .catch((err) => reject(err))
   })
 }
@@ -28,7 +32,7 @@ export function FilePost(url: string, file: any): Promise<any> {
       method: 'POST',
       body: file
     }).then((response) => response.json())
-      .then((data) => resolve(data))
+      .then((data: IResponse) => resolve(data))
       .catch((err) => reject(err))
   })
 }
@@ -38,7 +42,7 @@ export async function GET(url: string): Promise<any> {
     fetch(url, {
       method: 'GET',
     }).then((response) => response.json())
-      .then((data) => resolve(data))
+      .then((data: IResponse) => resolve(data))
       .catch((err) => reject(err))
   })
 }

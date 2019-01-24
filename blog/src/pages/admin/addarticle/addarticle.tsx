@@ -3,7 +3,7 @@ import { GET,  Post } from '@lib/helper'
 import './addarticle.scss'
 import {Editor} from '@components'
 import { UploadFile } from '../../../components/UploadFile/UploadFile'
-
+import { IResponse } from '@lib/helper'
 export class AddArticle extends React.Component {
   public constructor(props: any) {
     super(props)
@@ -13,8 +13,7 @@ export class AddArticle extends React.Component {
     title: '',
     description: '',
     img: '',
-    content: null,
-    startUpload: false // true开始上传文件
+    content: null
   }
   child:any
   public async getAllArticles() {
@@ -38,17 +37,24 @@ export class AddArticle extends React.Component {
   public handleEditorChange(value: any) {
     this.setState({content: value})
   }
-  public handleUploadChange(value: any) {
-    this.setState({img: value}) // 获取img的id
+  public handleUploadChange(res: IResponse) {
+    this.setState({img: res.result.id}) // 获取img的id
+    console.log(this.state.content)
+    Post('/admin/commitArticle', {
+      title: this.state.title,
+      img: this.state.img,
+      content: this.state.content,
+      description: this.state.description
+    })
   }
   public render() {
     return (
       <div className="App">
         <div>文章标题</div><input value={this.state.title} onChange={() => this.changeTitle(event)}></input>
-        <div>文章图片</div><UploadFile onRef={this.onRef} afterUpload={(val) => this.handleUploadChange(val)}></UploadFile>
+        <div>文章图片</div><UploadFile onRef={this.onRef} afterUpload={(val:IResponse) => this.handleUploadChange(val)}></UploadFile>
         <div>文章描述</div><textarea value={this.state.description} onChange={() => this.changeDescription(event)}></textarea>
         <button onClick={() => this.save()}>保存</button>
-        <Editor content = {this.state.content} editorChange={(val) => this.handleEditorChange(val)}></Editor>
+        <Editor content = {this.state.content} editorChange={(val:any) => this.handleEditorChange(val)}></Editor>
       </div>
     )
   }

@@ -26,5 +26,4 @@ export class Editor extends React.Component<Props, {}> {
     this.setState({ editorState })
     this.props.editorChange(editorState)
   }
-
 }

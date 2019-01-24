@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { PureComponent } from 'react'
-import { FilePost } from '@lib/helper'
+import { IResponse } from '@lib/helper'
 
 interface Props {
     afterUpload: Function,
     onRef: Function
 }
+
 export class UploadFile extends PureComponent<Props, {}> {
     componentDidMount(){
         this.props.onRef(this)
@@ -71,6 +72,18 @@ export class UploadFile extends PureComponent<Props, {}> {
     
         xhr.open('POST', url, true)  // 第三个参数为async?，异步/同步
         xhr.send(form)
+        const self = this 
+        xhr.onload = function () {
+            //如果请求成功
+            if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+                const res:IResponse = JSON.parse(xhr.responseText)
+                if(res.success) {
+                    self.props.afterUpload(res)
+                } else {
+                    alert('上传失败')
+                }
+            }
+        }
     }
     uploadProgress = (e) => {
         if (e.lengthComputable) {
