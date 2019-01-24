@@ -1,4 +1,6 @@
 import { createHash } from 'crypto'
+import * as fs from 'fs'
+import * as path from 'path'
 
 /**
  * create sha256 for data
@@ -60,4 +62,20 @@ export function createError (errMessage: any, status: number, userMessage?: stri
     error.status = status
     error.userMessage = userMessage
     return error
+}
+
+/**
+ * 同步创建文件目录
+ * @param  {string} dirname 目录绝对地址
+ * @return {boolean}        创建目录结果
+ */
+export function mkdirsSync (dirname) {
+    if (fs.existsSync(dirname)) {
+        return true
+    } else {
+        if (mkdirsSync(path.dirname(dirname))) {
+            fs.mkdirSync(dirname)
+            return true
+        }
+    }
 }

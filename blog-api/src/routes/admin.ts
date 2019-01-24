@@ -1,16 +1,23 @@
 import * as koaRouter from 'koa-router'
 import * as fs from 'fs'
+import { mkdirsSync } from '@libs/util'
+import { Picture } from '@models'
 const router = new koaRouter()
 
 router.prefix('/admin')
 
 router.post('/upload', async (ctx, next) => {
-    const file = ctx.request.files.file    // 获取上传文件
-    console.log(file)
-    const reader = fs.createReadStream(file.path)    // 创建可读流
-    const ext = file.name.split('.').pop()        // 获取上传文件扩展名
-    const upStream = fs.createWriteStream(`upload/666.${ext}`)        // 创建可写流
-    reader.pipe(upStream)    // 可读流通过管道写入可写流
+    mkdirsSync('upload/')
+    const file = ctx.request.files.file
+    const reader = fs.createReadStream(file.path)
+    const fileNameArr = file.name.split('.')
+    const ext = fileNameArr.pop()
+    const oldFileName = fileNameArr.join()
+    const newFileName = `${oldFileName}_${new Date().getTime()}`
+    const newFileUrl = `upload/${newFileName}.${ext}`
+    const upStream = fs.createWriteStream(newFileUrl)
+    reader.pipe(upStream)
+    new Picture({ name: oldFileName, picture_url: newFileUrl }).save(null, { method: 'insert' })
     return ctx.body = '上传成功'
 })
 
