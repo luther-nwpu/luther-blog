@@ -1,6 +1,5 @@
 import * as koaRouter from 'koa-router'
 import * as fs from 'fs'
-import { uploadFile } from '@libs/uploadFile'
 const router = new koaRouter()
 
 router.prefix('/admin')

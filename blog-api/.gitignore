@@ -44,3 +44,5 @@ jspm_packages
 
 .vscode
 .idea
+# 上传的文件
+upload/*
