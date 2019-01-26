@@ -1,22 +1,15 @@
-import 'braft-editor/dist/index.css'
+import './home.scss'
 import React from 'react'
-import BraftEditor from 'braft-editor'
+import { ArticleList } from '@components'
 
 export class Home extends React.Component {
 
-  public state = {
-    editorState: BraftEditor.createEditorState(null)
-  }
 
   render () {
     return (
-      <BraftEditor value={this.state.editorState} onChange={this.handleChange}/>
+      <div className="blog-app">
+        <ArticleList></ArticleList>
+      </div>
     )
   }
-
-  handleChange = (editorState) => {
-    this.setState({ editorState })
-    console.log(editorState)
-  }
-
 }

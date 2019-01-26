@@ -29,9 +29,12 @@ export class ArticleList extends React.Component {
   }
   public constructor(props: any) {
     super(props)
+    this.getAllArticles()
   }
   public async getAllArticles() {
     const res = await GET('/blog/getAllArticles')
+    console.log(res)
+
     console.log(res)
   }
   public render() {
