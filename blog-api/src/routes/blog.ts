@@ -8,7 +8,7 @@ router.prefix('/blog')
 
 router.get('/getAllArticles', async (ctx, next) => {
     const [articles, error] = await tryCatch(new Promise((resolve, reject) => {
-        new Article().fetch({ withRelated: ['picture'] }).then(function (results) {
+        new Article().fetchAll({ withRelated: ['picture'] }).then(function (results) {
             resolve(results)
         })
     }))

@@ -8,13 +8,15 @@ import * as FileKoaBody from 'koa-body'
 import { PORT, IS_PROD, DEBUG_NAMESPACE } from '@config'
 import { jwtMiddleware, errorCatcher } from '@middlewares'
 import WebSocket from '@websocket'
-import { blogRouter, adminRouter } from '@routes'
+import { blogRouter, adminRouter, commonRouter } from '@routes'
+import * as path from 'path'
 
 const app = new Koa()
 
 jwtMiddleware.forEach((value) => {
     app.use(value)
 })
+app.use(require('koa-static')(path.dirname('../')))
 
 app
     .use(FileKoaBody({
@@ -31,6 +33,8 @@ app
     .use(blogRouter.allowedMethods())
     .use(adminRouter.routes())
     .use(adminRouter.allowedMethods())
+    .use(commonRouter.routes())
+    .use(commonRouter.allowedMethods())
 const server = createServer(app.callback())
 
 // WebSocket({ server })

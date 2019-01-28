@@ -33,9 +33,17 @@ export class ArticleList extends React.Component {
   }
   public async getAllArticles() {
     const res = await GET('/blog/getAllArticles')
-    console.log(res)
-
-    console.log(res)
+    const result = res.result
+    this.setState({ articles: result.reduce((arr, value) => {
+        arr.push({
+          article_title: value.title,
+          article_img: `http://localhost:10011/${value.picture.picture_url}`,
+          article_time: value.update_at,
+          article_description: value.description
+        })
+        return arr
+      }, [])
+    })
   }
   public render() {
     return (

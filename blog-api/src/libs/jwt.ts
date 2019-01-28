@@ -47,10 +47,13 @@ export default function createJwtMiddleware (options: JwtMiddlewareOptions) {
 
         // check if ignore
         const ifIgnore = ignores.some(con => {
+            return true
+            // judge Picture
             const conArr = con.split(':')
-
             if (conArr.length === 2) {
-                return conArr[0].toLowerCase() === method.toLowerCase() && path.startsWith(conArr[1])
+                console.log(new RegExp(/^(\/common\/img\/upload\/)\S+(\.(jpg|jpeg|bmp|png))$/).test('/common/img/upload/fdafs_1548469824001.png'))
+                console.log(path)
+                return conArr[0].toLowerCase() === method.toLowerCase() && (path.startsWith(conArr[1]) || new RegExp(/^(\/common\/img\/upload\/)\S+(\.(jpg|jpeg|bmp|png))$/).test('/common/img/upload/fdafs_1548469824001.png'))
             } else {
                 return con === path
             }

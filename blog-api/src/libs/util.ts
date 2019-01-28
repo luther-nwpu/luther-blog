@@ -79,3 +79,22 @@ export function mkdirsSync (dirname) {
         }
     }
 }
+
+/**
+ * 处理图片流
+ */
+export function readImg (filePath) {
+    // 创建可读流
+    let data = []
+    return new Promise((resolve, reject) => {
+        const readerStream = fs.createReadStream(`${filePath}`)
+        readerStream.on('data', (chunk) => {
+            data.push(chunk)
+        })
+
+        readerStream.on('end', () => {
+            const finalData = Buffer.concat(data)
+            resolve(finalData)
+        })
+    })
+}
