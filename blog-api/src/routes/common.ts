@@ -43,14 +43,14 @@ router.post('/upload', async (ctx, next) => {
     return ctx.body = { success: true, result: result }
 })
 
-router.get('/img', async (ctx, next) => {
-    let { imgName } = ctx.request.query
-    const res = await readImg(imgName)
-    if (res) {
-        ctx.type = 'jpg'
-        ctx.body = res
-    }
-    await next()
-})
+// router.get('/img', async (ctx, next) => {
+//     let { imgName } = ctx.request.query
+//     const res = await readImg(imgName)
+//     if (res) {
+//         ctx.type = 'jpg'
+//         ctx.body = res
+//     }
+//     await next()
+// })
 
 export default router
