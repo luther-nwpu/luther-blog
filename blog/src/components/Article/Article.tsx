@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Post } from '@lib/helper'
 import './Article.scss'
-import BraftEditor, { EditorState } from 'braft-editor'
+import BraftEditor, {EditorState} from 'braft-editor'
 interface IProps {
     id: number
 }
@@ -40,7 +40,7 @@ export class Article extends React.Component<IProps, IState> {
                 title: result.title,
                 description: result.description,
                 update_at: result.update_at,
-                content: BraftEditor.createEditorState(result.content),
+                content: BraftEditor.createEditorState(JSON.parse(result.content)),
                 picture: result.pictire_url
             } 
         })
@@ -59,7 +59,7 @@ export class Article extends React.Component<IProps, IState> {
                         {this.state.articleDetail.update_at}
                     </div>
                     <div>
-                        {this.state.articleDetail.content.toHTML()}
+                        <div dangerouslySetInnerHTML = {{ __html:this.state.articleDetail.content.toHTML() }}></div>
                     </div>
                 </div>
             </div>

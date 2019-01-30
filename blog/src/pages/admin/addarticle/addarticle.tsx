@@ -4,16 +4,22 @@ import './AddArticle.scss'
 import {Editor} from '@components'
 import { UploadFile } from '../../../components/UploadFile/UploadFile'
 import { IResponse } from '@lib/helper'
-export class AddArticle extends React.Component {
+interface IState {
+  title: string,
+  description: string,
+  img: string,
+  content: string
+}
+export class AddArticle extends React.Component<{}, IState> {
   public constructor(props: any) {
     super(props)
     this.getAllArticles()
   }
-  public state = {
+  public state:IState = {
     title: '',
     description: '',
     img: '',
-    content: null
+    content: ''
   }
   child:any
   public async getAllArticles() {
@@ -39,11 +45,10 @@ export class AddArticle extends React.Component {
   }
   public handleUploadChange(res: IResponse) {
     this.setState({img: res.result.id}) // 获取img的id
-    console.log(this.state.content)
     Post('/admin/commitArticle', {
       title: this.state.title,
       img: this.state.img,
-      content: this.state.content.toHtml(),
+      content: this.state.content,
       description: this.state.description
     })
   }

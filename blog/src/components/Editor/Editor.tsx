@@ -2,14 +2,13 @@ import 'braft-editor/dist/index.css'
 import React from 'react'
 import BraftEditor from 'braft-editor'
 interface Props {
-  content: BraftEditor,
+  content: string,
   editorChange: Function,
 }
 export class Editor extends React.Component<Props, {}> {
-
   constructor(props) {
     super(props)
-    this.state = { editorState: props.content }
+    this.state = { editorState: BraftEditor.createEditorState(props.content) }
   }
 
   public state = {
@@ -24,6 +23,6 @@ export class Editor extends React.Component<Props, {}> {
 
   handleChange = (editorState) => {
     this.setState({ editorState })
-    this.props.editorChange(editorState)
+    this.props.editorChange(editorState.toRow())
   }
 }

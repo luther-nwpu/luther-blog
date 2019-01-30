@@ -47,13 +47,13 @@
     margin-top: -20px;
     font-size: 13.5px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-p {
-    position:relative;
-    line-height:1.4em;
-    /* 3 times the line-height to show 3 lines */
-    height:8.4em;
-    overflow:hidden;
+    p {
+        position:relative;
+        line-height:1.4em;
+        /* 3 times the line-height to show 3 lines */
+        height:8.4em;
+        overflow:hidden;
+    }
 }
 p::after {
     content:"...";
