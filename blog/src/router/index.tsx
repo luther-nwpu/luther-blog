@@ -12,7 +12,7 @@ class RouterConfig extends React.Component {
         <Provider store={store}>
             <Router history={history} >
                 <Switch>
-                    <Route exact={true} path="/" component={App}/>
+                    <Route path="/" component={App}/>
                     <Route path="/admin" component={AdminApp}/>
                     <Route component={Error} />
                 </Switch>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { GET,  Post } from '@lib/helper'
-import './addarticle.scss'
+import './addArticle.scss'
 import {Editor} from '@components'
 import { UploadFile } from '../../../components/UploadFile/UploadFile'
 import { IResponse } from '@lib/helper'
