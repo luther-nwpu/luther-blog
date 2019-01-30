@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {Home} from '@pages'
 import { Route, Switch } from 'react-router-dom'
-import './App.css'
+import './App.scss'
 import { ArticleDetail } from '@pages'
-import { Platform } from '@config'
+import { BlogApp, AdminApp } from '@layout'
 export class App extends React.Component {
   public state = {
     match: '',
@@ -17,10 +17,8 @@ export class App extends React.Component {
   public render() {
     return (
       <div className="page">
-        <Switch>
-          <Route exact={true} path={`${this.state.match}`} component={Home} />
-          <Route path={`${this.state.match}article/:id`} component={ ArticleDetail } />`
-        </Switch>
+        <Route path={`${this.state.match}`} component={BlogApp}/>
+        <Route path={`${this.state.match}admin`} component={AdminApp} />
       </div>
     )
   }
