@@ -45,4 +45,18 @@ router.post('/commitArticle', async (ctx, next) => {
     return ctx.body = { success: true, result: result }
 })
 
+router.post('/editArticle', async (ctx, next) => {
+    const body = JSON.parse(ctx.request.body)
+    const [result, error] = await tryCatch(new Promise((resolve, reject) => {
+        new Article({ article_id: body.article_id, description: body.description, picture_id: body.img, title: body.title, content: JSON.stringify(body.content) }).save(null, { method: 'insert' }).then(model => {
+            resolve(model)
+        }).catch(err => {
+            reject(err)
+        })
+    }))
+    if (error) {
+        return ctx.body = { success: false, result: error }
+    }
+    return ctx.body = { success: true, result: result }
+})
 export default router

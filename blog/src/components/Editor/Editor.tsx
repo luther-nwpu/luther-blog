@@ -23,6 +23,6 @@ export class Editor extends React.Component<Props, {}> {
 
   handleChange = (editorState) => {
     this.setState({ editorState })
-    this.props.editorChange(editorState.toRow())
+    this.props.editorChange(editorState.toRAW())
   }
 }

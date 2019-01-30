@@ -11,8 +11,9 @@ export const jwtMiddleware = [
             'GET:/blog/getAllArticles',
             'POST:/admin/commitArticle',
             'POST:/admin/addArticle',
+            'POST:/admin/editArticle',
             `GET:^(\\/upload\\/)\\S+(\\.(jpeg|png|jpg))$`,
-            'POST:/common/getArticleById'
+            'POST:/common/getArticleById',
         ]
     }),
 

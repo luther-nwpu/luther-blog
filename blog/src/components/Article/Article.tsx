@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Post } from '@lib/helper'
 import './Article.scss'
+import history from '@router'
 import BraftEditor, {EditorState} from 'braft-editor'
 interface IProps {
     id: number
@@ -45,9 +46,14 @@ export class Article extends React.Component<IProps, IState> {
             } 
         })
     }
+    public linkToEditArticle(articleId) {
+        history.push(`/admin/editarticle/${articleId}`)
+    }
+
     public render() {
         return (
             <div className="app">
+                <button onClick={() => this.linkToEditArticle(this.props.id)}> 跳转到1编辑 </button>
                 <div className="article-app"> 
                     <div className="article-app-title">
                         {this.state.articleDetail.title}
