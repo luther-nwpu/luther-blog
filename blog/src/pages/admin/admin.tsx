@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { GET } from '@lib/helper'
-import './admin.scss'
+import './Admin.scss'
 import {ArticleList} from '@components'
 import history from '@router'
 export class Admin extends React.Component {

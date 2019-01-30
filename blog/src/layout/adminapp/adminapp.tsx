@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Route, Switch} from 'react-router'
 import { Admin, AddArticle } from '@pages'
-import './adminapp.css'
+import './AdminApp.scss'
 export class AdminApp extends React.Component {
   public state = {
     match: '',
