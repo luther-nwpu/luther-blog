@@ -43,6 +43,20 @@ router.post('/upload', async (ctx, next) => {
     return ctx.body = { success: true, result: result }
 })
 
+router.post('/getArticleById', async (ctx, next) => {
+    const body = JSON.parse(ctx.request.body)
+    console.log(body.article_id)
+    const [article, error] = await tryCatch(new Promise((resolve, reject) => {
+        new Article({ article_id: body.article_id }).fetch({ withRelated: ['picture'] }).then((result) => {
+            resolve(result)
+        })
+    }))
+    if (error) {
+        return ctx.body = { success: false, result: error }
+    }
+    return ctx.body = { success: true, result: article }
+})
+
 // router.get('/img', async (ctx, next) => {
 //     let { imgName } = ctx.request.query
 //     const res = await readImg(imgName)
