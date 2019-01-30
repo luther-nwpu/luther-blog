@@ -1,4 +1,4 @@
-import './home.scss'
+import './Home.scss'
 import React from 'react'
 import { ArticleList } from '@components'
 

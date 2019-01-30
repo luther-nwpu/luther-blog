@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { Post } from '@lib/helper'
 import './Article.scss'
+import BraftEditor, { EditorState } from 'braft-editor'
 interface IProps {
     id: number
 }
 interface ArticleDetail {
     title: string,
     description: string,
-    content: string,
+    content: EditorState,
     update_at: string,
     picture: string
 }
@@ -18,7 +19,7 @@ export class Article extends React.Component<IProps, IState> {
     articleDetail: ArticleDetail = {
         title: '',
         description: '',
-        content: '',
+        content: BraftEditor.createEditorState(null),
         update_at: '',
         picture: ''
     }
@@ -39,26 +40,27 @@ export class Article extends React.Component<IProps, IState> {
                 title: result.title,
                 description: result.description,
                 update_at: result.update_at,
-                content: result.content,
+                content: BraftEditor.createEditorState(result.content),
                 picture: result.pictire_url
             } 
         })
     }
     public render() {
         return (
-            <div className="article-app">
-            6666
-                <div className="article-app-title">
-                    {this.state.articleDetail.title}
-                </div>
-                <div className="">
-                    {this.state.articleDetail.description}
-                </div>
-                <div>
-                    {this.state.articleDetail.update_at}
-                </div>
-                <div>
-                    {this.state.articleDetail.content}
+            <div className="app">
+                <div className="article-app"> 
+                    <div className="article-app-title">
+                        {this.state.articleDetail.title}
+                    </div>
+                    <div className="article-app-description">
+                        {this.state.articleDetail.description}
+                    </div>
+                    <div>
+                        {this.state.articleDetail.update_at}
+                    </div>
+                    <div>
+                        {this.state.articleDetail.content.toHTML()}
+                    </div>
                 </div>
             </div>
         )

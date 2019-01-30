@@ -43,7 +43,7 @@ export class AddArticle extends React.Component {
     Post('/admin/commitArticle', {
       title: this.state.title,
       img: this.state.img,
-      content: this.state.content,
+      content: this.state.content.toHtml(),
       description: this.state.description
     })
   }

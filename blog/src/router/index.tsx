@@ -13,8 +13,7 @@ class RouterConfig extends React.Component {
             <Router history={history} >
                 <Switch>
                     <Route path="/" component={App}/>
-                    <Route path="/admin" component={AdminApp}/>
-                    <Route component={Error} />
+                    <Route path="*" component={Error} />
                 </Switch>
             </Router>
         </Provider>
