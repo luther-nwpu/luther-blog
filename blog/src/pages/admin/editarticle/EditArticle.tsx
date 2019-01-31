@@ -30,6 +30,7 @@ export class EditArticle extends React.Component<{}, IState> {
   }
   public state:IState
   child:any
+  editorChild: any
   public async save() {
     console.log(this.child.startUpload())
   }
@@ -52,7 +53,9 @@ export class EditArticle extends React.Component<{}, IState> {
   onRef = (ref) => {
     this.child = ref
   }
-
+  onEditorRef = (ref) => {
+    this.editorChild = ref
+  }
   public changeDescription(event: any) {
     this.setState({description: event.target.value})
   }
@@ -60,12 +63,13 @@ export class EditArticle extends React.Component<{}, IState> {
     this.setState({content: value})
   }
   public handleUploadChange(res: IResponse) {
+    const content = this.editorChild.getEditorContent()
     this.setState({img: res.result.id}) // 获取img的id
     Post('/admin/editArticle', {
       article_id: this.state.id,
       title: this.state.title,
       img: this.state.img,
-      content: this.state.content,
+      content: content,
       description: this.state.description
     })
   }
@@ -76,7 +80,7 @@ export class EditArticle extends React.Component<{}, IState> {
         <div>文章图片</div><UploadFile onRef={this.onRef} afterUpload={(val:IResponse) => this.handleUploadChange(val)}></UploadFile>
         <div>文章描述</div><textarea value={this.state.description} onChange={() => this.changeDescription(event)}></textarea>
         <button onClick={() => this.save()}>保存</button>
-        <Editor content = {this.state.content} editorChange={(val:any) => this.handleEditorChange(val)}></Editor>
+        <Editor onEditorRef={this.onEditorRef} content = {this.state.content}></Editor>
       </div>
     )
   }

@@ -17,6 +17,8 @@ export class ArticleList extends React.Component {
   }
   public constructor(props: any) {
     super(props)
+  }
+  componentDidMount() {
     this.getAllArticles()
   }
   public async getAllArticles() {

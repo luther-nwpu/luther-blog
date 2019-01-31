@@ -47,13 +47,18 @@ router.post('/commitArticle', async (ctx, next) => {
 
 router.post('/editArticle', async (ctx, next) => {
     const body = JSON.parse(ctx.request.body)
+    console.log(body)
     const [result, error] = await tryCatch(new Promise((resolve, reject) => {
-        new Article({ article_id: body.article_id, description: body.description, picture_id: body.img, title: body.title, content: JSON.stringify(body.content) }).save(null, { method: 'insert' }).then(model => {
-            resolve(model)
-        }).catch(err => {
-            reject(err)
-        })
+        new Article()
+            .where({ article_id: body.article_id })
+            .save({ description: body.description, picture_id: body.img, title: body.title, content: JSON.stringify(body.content) }, { method: 'update' })
+            .then(model => {
+                resolve(model)
+            }).catch(err => {
+                reject(err)
+            })
     }))
+    console.log(error)
     if (error) {
         return ctx.body = { success: false, result: error }
     }
