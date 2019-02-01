@@ -6,7 +6,5 @@ yarn.lock
 .vscode
 # ignore yarn-error.log
 yarn-error.log
-# build
-build
 # ignore package-lock.json
 package-lock.json
