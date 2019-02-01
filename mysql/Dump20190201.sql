@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `lutherblog` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8_general_ci */;
+CREATE DATABASE  IF NOT EXISTS `lutherblog` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci */;
 USE `lutherblog`;
 -- MySQL dump 10.13  Distrib 8.0.14, for Win64 (x86_64)
 --
@@ -23,7 +23,7 @@ USE `lutherblog`;
 
 DROP TABLE IF EXISTS `articles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `articles` (
   `article_id` int(11) NOT NULL AUTO_INCREMENT,
   `description` text,
@@ -54,7 +54,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `pictures`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `pictures` (
   `picture_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -82,7 +82,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+ SET character_set_client = utf8 ;
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `username` varchar(45) NOT NULL,
