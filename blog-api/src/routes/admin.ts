@@ -4,7 +4,7 @@ import { mkdirsSync, tryCatch } from '@libs/util'
 import { Picture, Article } from '@models'
 const router = new koaRouter()
 
-router.prefix('/admin')
+router.prefix('/api/admin')
 
 router.post('/upload', async (ctx, next) => {
     const [result, error] = await tryCatch(new Promise((resovle: Function, reject: Function) => {

@@ -5,7 +5,7 @@ import { mkdirsSync, tryCatch, readImg } from '@libs/util'
 
 const router = new koaRouter()
 
-router.prefix('/common')
+router.prefix('/api/common')
 
 router.get('/getAllArticles', async (ctx, next) => {
     const [articles, error] = await tryCatch(new Promise((resolve, reject) => {

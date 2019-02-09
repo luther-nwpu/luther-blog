@@ -13,9 +13,9 @@ import * as path from 'path'
 
 const app = new Koa()
 
-jwtMiddleware.forEach((value) => {
-    app.use(value)
-})
+// jwtMiddleware.forEach((value) => {
+//     app.use(value)
+// })
 app.use(require('koa-static')(path.dirname('../')))
 
 app

@@ -4,7 +4,7 @@ import { tryCatch } from '@libs/util'
 
 const router = new koaRouter()
 
-router.prefix('/blog')
+router.prefix('/api/blog')
 
 router.get('/getAllArticles', async (ctx, next) => {
     const [articles, error] = await tryCatch(new Promise((resolve, reject) => {
