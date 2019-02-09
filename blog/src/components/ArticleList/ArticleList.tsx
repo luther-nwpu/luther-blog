@@ -22,7 +22,7 @@ export class ArticleList extends React.Component {
     this.getAllArticles()
   }
   public async getAllArticles() {
-    const res = await GET('/blog/getAllArticles')
+    const res = await GET('/api/blog/getAllArticles')
     const result = res.result
     this.setState({ articles: result.reduce((arr, value) => {
         arr.push({
