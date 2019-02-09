@@ -78,7 +78,7 @@
     "tslint": "^5.10.0",
     "typescript": "^3.2.2"
   },
-  "proxy": "http://localhost:10011",
+  "proxy": "http://localhost:10011/api",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
