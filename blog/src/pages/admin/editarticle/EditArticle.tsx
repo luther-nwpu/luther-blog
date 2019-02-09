@@ -35,7 +35,7 @@ export class EditArticle extends React.Component<{}, IState> {
     console.log(this.child.startUpload())
   }
   public async getArticleById() {
-    const res = await Post('/common/getArticleById', {
+    const res = await Post('/api/common/getArticleById', {
         article_id: this.state.id
     })
     const result = res.result
@@ -65,7 +65,7 @@ export class EditArticle extends React.Component<{}, IState> {
   public handleUploadChange(res: IResponse) {
     const content = this.editorChild.getEditorContent()
     this.setState({img: res.result.id}) // 获取img的id
-    Post('/admin/editArticle', {
+    Post('/api/admin/editArticle', {
       article_id: this.state.id,
       title: this.state.title,
       img: this.state.img,

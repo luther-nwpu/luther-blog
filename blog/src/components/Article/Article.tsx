@@ -32,7 +32,7 @@ export class Article extends React.Component<IProps, IState> {
         this.getArticleById()
     }
     public async getArticleById() {
-        const res = await Post('/common/getArticleById', {
+        const res = await Post('/api/common/getArticleById', {
             article_id: this.props.id
         })
         const result = res.result
