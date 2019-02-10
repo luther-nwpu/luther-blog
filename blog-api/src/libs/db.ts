@@ -11,7 +11,8 @@ export const db = knex({
         password: MYSQL.PASS,
         database: MYSQL.DB,
         charset: MYSQL.CHAR,
-        timezone: '+08:00'
+        timezone: '+08:00',
+        socketPath: '/var/run/mysqld/mysqld.sock'
     }
 })
 
