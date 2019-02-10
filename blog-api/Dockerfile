@@ -1,7 +1,9 @@
 FROM keymetrics/pm2:latest-alpine
 
 # Bundle APP files
-COPY . /deploy/blog-api
+COPY dist dist/
+COPY package.json .
+COPY processes.json .
 
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn
