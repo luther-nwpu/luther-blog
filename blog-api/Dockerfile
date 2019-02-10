@@ -7,7 +7,6 @@ COPY processes.json .
 
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn
-RUN npm install pm2 -g
 RUN npm install --production
 
 # Expose the listening port of your app
