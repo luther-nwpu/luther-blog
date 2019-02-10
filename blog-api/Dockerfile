@@ -4,6 +4,7 @@ FROM keymetrics/pm2:latest-alpine
 COPY dist dist/
 COPY package.json .
 COPY processes.json .
+COPY tsconfig.json .
 
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn
